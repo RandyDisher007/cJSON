@@ -361,17 +361,17 @@ loop_end:
     item->valuedouble = number;
 
     /* use saturation in case of overflow */
-    if (number >= INT_MAX)
+    if (number >= LLONG_MAX)
     {
-        item->valueint = INT_MAX;
+        item->valueint = LLONG_MAX;
     }
-    else if (number <= (double)INT_MIN)
+    else if (number <= (double)LLONG_MIN)
     {
-        item->valueint = INT_MIN;
+        item->valueint = LLONG_MIN;
     }
     else
     {
-        item->valueint = (int)number;
+        item->valueint = (long long int)number;
     }
 
     item->type = cJSON_Number;

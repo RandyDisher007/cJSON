@@ -109,7 +109,7 @@ typedef struct cJSON
     struct cJSON *child;
 
     /* The type of the item, as above. */
-    int type;
+    long long int type;
 
     /* The item's string, if type==cJSON_String  and type == cJSON_Raw */
     char *valuestring;
