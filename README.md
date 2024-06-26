@@ -237,7 +237,7 @@ it gets deleted as well. You also could use `cJSON_SetValuestring` to change a `
 
 * **null** is created with `cJSON_CreateNull`
 * **booleans** are created with `cJSON_CreateTrue`, `cJSON_CreateFalse` or `cJSON_CreateBool`
-* **numbers** are created with `cJSON_CreateNumber`. This will set both `valuedouble` and `valueint`. If the number is outside of the range of an integer, `INT_MAX` or `INT_MIN` are used for `valueint`
+* **numbers** are created with `cJSON_CreateNumber`. This will set both `valuedouble` and `valueint`. If the number is outside of the range of an integer, `LLONG_MAX` or `LLONG_MIN` are used for `valueint`
 * **strings** are created with `cJSON_CreateString` (copies the string) or with `cJSON_CreateStringReference` (directly points to the string. This means that `valuestring` won't be deleted by `cJSON_Delete` and you are responsible for its lifetime, useful for constants)
 
 #### Arrays

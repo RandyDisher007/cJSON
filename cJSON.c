@@ -383,13 +383,13 @@ loop_end:
 /* don't ask me, but the original cJSON_SetNumberValue returns an integer or double */
 CJSON_PUBLIC(double) cJSON_SetNumberHelper(cJSON *object, double number)
 {
-    if (number >= INT_MAX)
+    if (number >= LLONG_MAX)
     {
-        object->valueint = INT_MAX;
+        object->valueint = LLONG_MAX;
     }
-    else if (number <= (double)INT_MIN)
+    else if (number <= (double)LLONG_MIN)
     {
-        object->valueint = INT_MIN;
+        object->valueint = LLONG_MIN;
     }
     else
     {
@@ -460,9 +460,9 @@ static unsigned char* ensure(printbuffer * const p, size_t needed)
         return NULL;
     }
 
-    if (needed > INT_MAX)
+    if (needed > LLONG_MAX)
     {
-        /* sizes bigger than INT_MAX are currently not supported */
+        /* sizes bigger than LLONG_MAX are currently not supported */
         return NULL;
     }
 
@@ -477,12 +477,12 @@ static unsigned char* ensure(printbuffer * const p, size_t needed)
     }
 
     /* calculate new buffer size */
-    if (needed > (INT_MAX / 2))
+    if (needed > (LLONG_MAX / 2))
     {
-        /* overflow of int, use INT_MAX if possible */
-        if (needed <= INT_MAX)
+        /* overflow of int, use LLONG_MAX if possible */
+        if (needed <= LLONG_MAX)
         {
-            newsize = INT_MAX;
+            newsize = LLONG_MAX;
         }
         else
         {
@@ -2458,13 +2458,13 @@ CJSON_PUBLIC(cJSON *) cJSON_CreateNumber(double num)
         item->valuedouble = num;
 
         /* use saturation in case of overflow */
-        if (num >= INT_MAX)
+        if (num >= LLONG_MAX)
         {
-            item->valueint = INT_MAX;
+            item->valueint = LLONG_MAX;
         }
-        else if (num <= (double)INT_MIN)
+        else if (num <= (double)LLONG_MIN)
         {
-            item->valueint = INT_MIN;
+            item->valueint = LLONG_MIN;
         }
         else
         {
